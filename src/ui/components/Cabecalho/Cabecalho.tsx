@@ -1,6 +1,6 @@
 import { 
   CabecalhoContainer, 
-  Logo 
+  Logo
 } from './Cabecalho.style';
 
 export default function Cabecalho(){
