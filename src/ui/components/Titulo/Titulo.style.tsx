@@ -11,5 +11,5 @@ export const Subtitulo = styled('h2')`
     text-align: center;
     margin-bottom: ${({ theme }) => theme.spacing(5)};
     font-weight: normal;
-    color: ${({ theme }) => theme.palette.text.secondary};
+    color: ${({ theme }) => theme.palette.text.secondary };
 `;
