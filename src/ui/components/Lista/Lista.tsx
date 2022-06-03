@@ -1,3 +1,4 @@
+import { Button } from '@mui/material'
 import {
 
   ListaStyled,
@@ -7,19 +8,29 @@ import {
   Nome,
   Descricao
 } from './Lista.style'
+import { Pet } from '../../../data/@types/Pet'
 
-export default function Lista(){
+interface ListaProps{
+  pets: Pet[];
+}
+
+export default function Lista(props: ListaProps){
   return (
     <ListaStyled>
-      <Itemlista>
-        <Foto/>
+      {props.pets.map(pet =>(
+        <Itemlista>
+        <Foto src={pet.foto} alt={pet.nome}/>
           <Informacoes>
-            <Nome>Bidu</Nome>
+            <Nome>{pet.nome}</Nome>
             <Descricao>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut vitae doloremque tempore delectus laborum corrupti minus provident pariatur error voluptates autem reiciendis veniam sit cum explicabo non temporibus, in fugiat.
+              {pet.historia}
             </Descricao>
+              <Button variant={'contained'}fullWidth>
+                Adotar{pet.nome}
+              </Button>
           </Informacoes>
       </Itemlista>
+      ))}
     </ListaStyled>
   )
 }
