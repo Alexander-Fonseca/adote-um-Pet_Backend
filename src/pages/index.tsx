@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Lista from '../ui/components/Lista/Lista'
 import Titulo from '../ui/components/Titulo/Titulo';
 
 const Home: NextPage = () => {
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
             </span>
         } 
       />
+      <Lista />
     </div>
   )
 }
