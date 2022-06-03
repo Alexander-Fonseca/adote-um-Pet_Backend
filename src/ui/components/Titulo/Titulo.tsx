@@ -6,11 +6,10 @@ interface TituloProps {
 }
 
 export default function Titulo(props: TituloProps){
-   return (
-   <>
-     <TituloStyled>{props.titulo}</TituloStyled>
-            <Subtitulo></Subtitulo>
-   </> 
-          
-   )
+  return (
+    <>
+      <TituloStyled>{props.titulo}</TituloStyled>
+      <Subtitulo>{props.subtitulo}</Subtitulo>
+    </>       
+  );
 }
