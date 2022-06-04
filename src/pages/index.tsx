@@ -6,7 +6,14 @@ import { useIndex } from '../data/hooks/pages/useindex';
 
 const Home: NextPage = () => {
   const {
-    listaPets
+    listaPets,
+    petSelecionado,
+    setPetSelecionado,
+    email,
+    setEmail,
+    valor,
+    setValor
+    
   } = useIndex();
 
   return (
@@ -22,12 +29,14 @@ const Home: NextPage = () => {
       />
       <Lista 
         pets={listaPets}
+        onSelect={(pet) => setPetSelecionado(pet)}
       />
 
       <Dialog 
-      open={false}
+      open={petSelecionado !== null}
       fullWidth
       PaperProps={{ sx:{ padding: 5 }}}
+      onClose={() => setPetSelecionado(null)}
       > 
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -48,7 +57,9 @@ const Home: NextPage = () => {
         </Grid>
           <DialogActions sx={{marginTop: 5}}>
             <Button 
-            color={'secondary'}>
+            color={'secondary'}
+            onClick={() => setPetSelecionado(null)}
+            >
               Cancelar
             </Button>
             <Button

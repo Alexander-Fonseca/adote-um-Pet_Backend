@@ -18,9 +18,17 @@ export function useIndex() {
       }
     ]
   ),
-      [petSelecionado, setpetSelecionado] = useState<Pet | null>(null);
+      [petSelecionado, setPetSelecionado] = useState<Pet | null>(null),
+      [email, setEmail] = useState(''),
+      [valor, setValor] = useState('');
 
   return {
-    listaPets
+    listaPets,
+    petSelecionado,
+    setPetSelecionado,
+    email,
+    setEmail,
+    valor,
+    setValor
   };
 }
