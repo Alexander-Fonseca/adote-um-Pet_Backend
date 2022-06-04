@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Lista from '../ui/components/Lista/Lista'
 import Titulo from '../ui/components/Titulo/Titulo';
+import { Dialog, TextField, Grid } from '@mui/material';
 
 const Home: NextPage = () => {
   return (
@@ -30,6 +31,28 @@ const Home: NextPage = () => {
           }
         ]}
       />
+
+      <Dialog 
+      open={true}
+      fullWidth
+      PaperProps={{ sx:{ padding: 5 }}}
+      > 
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+            label={'E-mail'}
+            fullWidth
+           />
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextField
+            label={'Quantia por mês'}
+            fullWidth
+            />
+          </Grid>  
+        </Grid>
+      </Dialog>
     </div>
   )
 }
