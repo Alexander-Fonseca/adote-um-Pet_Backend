@@ -1,7 +1,8 @@
 import type { NextPage } from 'next'
 import Lista from '../ui/components/Lista/Lista'
 import Titulo from '../ui/components/Titulo/Titulo';
-import { Dialog, TextField, Grid } from '@mui/material';
+import { Dialog, TextField, Grid, DialogActions, Button, Snackbar } from '@mui/material';
+import { useState } from 'react';
 
 const Home: NextPage = () => {
   return (
@@ -33,7 +34,7 @@ const Home: NextPage = () => {
       />
 
       <Dialog 
-      open={true}
+      open={false}
       fullWidth
       PaperProps={{ sx:{ padding: 5 }}}
       > 
@@ -41,6 +42,7 @@ const Home: NextPage = () => {
           <Grid item xs={12}>
             <TextField
             label={'E-mail'}
+            type={'email'}
             fullWidth
            />
           </Grid>
@@ -48,11 +50,27 @@ const Home: NextPage = () => {
           <Grid item xs={12}>
             <TextField
             label={'Quantia por mês'}
+            type={'number'}
             fullWidth
             />
           </Grid>  
         </Grid>
+          <DialogActions sx={{marginTop: 5}}>
+            <Button 
+            color={'secondary'}>
+              Cancelar
+            </Button>
+            <Button
+            variant={'contained'}>
+              Confirmar adoção
+            </Button>
+          </DialogActions>
       </Dialog>
+
+      <Snackbar 
+        open={false}
+        message={'lecolecoleco'}
+      />
     </div>
   )
 }
