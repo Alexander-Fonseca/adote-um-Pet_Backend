@@ -12,8 +12,11 @@ const Home: NextPage = () => {
     email,
     setEmail,
     valor,
-    setValor
-    
+    setValor,
+    mensagem, 
+    setMensagem,
+    adotar
+
   } = useIndex();
 
   return (
@@ -44,6 +47,9 @@ const Home: NextPage = () => {
             label={'E-mail'}
             type={'email'}
             fullWidth
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+
            />
           </Grid>
 
@@ -52,6 +58,8 @@ const Home: NextPage = () => {
             label={'Quantia por mês'}
             type={'number'}
             fullWidth
+            value={valor}
+            onChange={(e) => setValor(e.target.value)}
             />
           </Grid>  
         </Grid>
@@ -63,15 +71,20 @@ const Home: NextPage = () => {
               Cancelar
             </Button>
             <Button
-            variant={'contained'}>
+            variant={'contained'}
+            onClick={() => adotar()}
+            
+            >
               Confirmar adoção
             </Button>
           </DialogActions>
       </Dialog>
 
       <Snackbar 
-        open={false}
-        message={'lecolecoleco'}
+        open={mensagem.length > 0}
+        message={mensagem}
+        autoHideDuration={2500}
+        onClose={() => setMensagem('')}
       />
     </div>
   )

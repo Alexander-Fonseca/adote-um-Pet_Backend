@@ -20,7 +20,10 @@ export function useIndex() {
   ),
       [petSelecionado, setPetSelecionado] = useState<Pet | null>(null),
       [email, setEmail] = useState(''),
-      [valor, setValor] = useState('');
+      [valor, setValor] = useState(''),
+      [mensagem, setMensagem] = useState('');
+
+   function adotar(){}
 
   return {
     listaPets,
@@ -29,6 +32,9 @@ export function useIndex() {
     email,
     setEmail,
     valor,
-    setValor
+    setValor,
+    mensagem, 
+    setMensagem,
+    adotar
   };
 }
