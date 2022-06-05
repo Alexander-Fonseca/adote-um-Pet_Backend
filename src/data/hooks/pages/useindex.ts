@@ -18,6 +18,12 @@ export function useIndex() {
       })
    }, [])   
 
+   useEffect(() => {
+      if(petSelecionado === null){
+        limparFormulario();
+      }
+   }, [petSelecionado])
+
    function adotar(){
       if(petSelecionado !== null){
           if(validarDadosAdocao()){
@@ -29,6 +35,7 @@ export function useIndex() {
                     .then(() => {
                        setPetSelecionado(null);
                        setMensagem('Pet adotado com sucesso!');
+                       limparFormulario();
                     })
                     .catch((error: AxiosError) => {
                         setMensagem(error.response?.data.message)
@@ -41,6 +48,11 @@ export function useIndex() {
 
    function validarDadosAdocao(){
       return email.length > 0 && valor.length > 0;
+   }
+
+   function limparFormulario(){
+     setEmail('');
+     setValor('');
    }
 
   return {
