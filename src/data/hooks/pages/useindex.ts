@@ -1,29 +1,47 @@
-import { useState } from "react";
+import { AxiosError } from "axios";
+import { useState, useEffect } from "react";
 import { Pet } from "../../@types/Pet";
+import { ApiService } from "../../services/ApiService";
+
 
 export function useIndex() {
-  const [listaPets, setListaPets] = useState(
-    [
-      {
-        id: 1,
-        nome: 'Bidu',
-        historia: ' dgdsgdhdhfjhfdjdjdf',
-        foto: 'https://images.pexels.com/photos/2023384/pexels-photo-2023384.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
-      },
-      {
-        id: 2,
-        nome: 'Scooby',
-        historia: ' dgdsgdhdhfjhfdjdjdf',
-        foto: 'https://images.pexels.com/photos/39317/chihuahua-dog-puppy-cute-39317.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
-      }
-    ]
-  ),
+  const [listaPets, setListaPets] = useState<Pet[]>([]),
       [petSelecionado, setPetSelecionado] = useState<Pet | null>(null),
       [email, setEmail] = useState(''),
       [valor, setValor] = useState(''),
       [mensagem, setMensagem] = useState('');
 
-   function adotar(){}
+   useEffect(() => {
+      ApiService.get('/pets')
+      .then((resposta) =>{
+          setListaPets(resposta.data);
+      })
+   }, [])   
+
+   function adotar(){
+      if(petSelecionado !== null){
+          if(validarDadosAdocao()){
+                ApiService.post('/adocoes', {
+                    pet_id: petSelecionado.id,
+                    email,
+                    valor
+                })
+                    .then(() => {
+                       setPetSelecionado(null);
+                       setMensagem('Pet adotado com sucesso!');
+                    })
+                    .catch((error: AxiosError) => {
+                        setMensagem(error.response?.data.message)
+                    })
+          } else {
+            setMensagem('Preencha todos os campos corretamente!')
+          }
+      }
+    }
+
+   function validarDadosAdocao(){
+      return email.length > 0 && valor.length > 0;
+   }
 
   return {
     listaPets,

@@ -33,7 +33,7 @@ export default function Lista(props: ListaProps){
                 fullWidth
                 onClick={() => props.onSelect(pet)}
                 >
-                Adotar{pet.nome}
+                Adotar {pet.nome}
               </Button>
           </Informacoes>
       </Itemlista>
