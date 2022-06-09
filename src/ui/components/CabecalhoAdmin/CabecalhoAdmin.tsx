@@ -18,9 +18,10 @@ export default function CabecalhoAdmin(){
               <a>Cadastrar Pet</a> 
               </Link>
               <Link component={NextLink} href={'/pets/relatorio'}>
-              <a>Relatório 
+              <a>Relatório {' '}
                 <Box component={'span'} sx={{display: {sm: 'initial', xs:'none'}}}
-                > de Adoção</Box>
+                >
+                  de Adoção</Box>
                 </a> 
               </Link>
           </LinksContainer>
