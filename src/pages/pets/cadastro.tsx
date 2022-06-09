@@ -4,6 +4,18 @@ import Titulo from "../../ui/components/Titulo/Titulo";
 import { Paper, Grid, TextField, Button, Snackbar } from '@mui/material';
 
 const Cadastro: NextPage = () => {
+    const {
+        nome,
+        historia,
+        foto,
+        setNome,
+        setHistoria,
+        setFoto,
+        cadastrar,
+        mensagem,
+        setMensagem
+} = useCadastro();
+
     return (
       <>
           <Titulo
