@@ -27,13 +27,17 @@ const Cadastro: NextPage = () => {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <TextField 
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)}
                         label={'Nome'}
                         placeholder={'Digite o nome do pet'}
                         fullWidth
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField 
+                    <TextField
+                        value={historia}
+                        onChange={(e) => setHistoria(e.target.value)}
                         label={'História do Pet'}
                         multiline
                         fullWidth
@@ -41,12 +45,14 @@ const Cadastro: NextPage = () => {
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField 
+                    <TextField
+                        value={foto}
+                        onChange={(e) => setFoto(e.target.value)} 
                         label={'Foto'}
                         placeholder={'Digite o endereço da imagem'}
                         fullWidth
                     />
-                    <Button
+                    <Button                       
                         variant={'contained'}
                         color={'secondary'}
                         sx={{mt: 2}}
@@ -59,6 +65,7 @@ const Cadastro: NextPage = () => {
                 </Grid>
                 <Grid item xs={12} sx={{textAlign: 'center'}}>
                     <Button
+                    onClick={cadastrar}
                     variant={'contained'}
                     fullWidth
                     sx={{maxWidth: {md: 200}, mt: 4}}
@@ -69,8 +76,11 @@ const Cadastro: NextPage = () => {
             </Grid>
           </Paper>
           <Snackbar
-              open={false}
-              message={'Pet cadastrado'}
+
+              open={mensagem.length > 0}
+              autoHideDuration={2500}
+              onClose={() => setMensagem('')}
+              message={mensagem}
           />
       </>
     )

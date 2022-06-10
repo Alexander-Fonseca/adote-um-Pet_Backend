@@ -10,7 +10,9 @@ export function useCadastro(){
 
     }
     
-    function validarFormulario(){}
+    function validarFormulario(){
+        return nome.length > 2 && historia.length > 20 && foto.length > 5;
+    }
 
 
     function limpar(){}
