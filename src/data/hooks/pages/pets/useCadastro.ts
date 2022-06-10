@@ -1,4 +1,6 @@
+import { AxiosError } from 'axios';
 import { useState } from 'react';
+import { ApiService } from '../../../services/ApiService';
 
 export function useCadastro(){
     const [nome, setNome] = useState(''),
@@ -7,7 +9,22 @@ export function useCadastro(){
         [mensagem, setMensagem] = useState('');
 
     function cadastrar(){
-
+        if(validarFormulario()){
+            ApiService.post('/pets',{
+              nome, 
+              historia,
+              foto
+            })
+              .then(() => {
+                  limpar();
+                  setMensagem('Pet cadastrado com sucesso!');
+              })
+              .catch((error: AxiosError) => {
+                  setMensagem(error.response?.data.message);
+              })
+        } else {
+            setMensagem('Preencha todos os campos!')
+        }
     }
     
     function validarFormulario(){
@@ -15,7 +32,11 @@ export function useCadastro(){
     }
 
 
-    function limpar(){}
+    function limpar(){
+        setNome('');
+        setHistoria('');
+        setFoto('');
+    }
 
     return {
         nome,
