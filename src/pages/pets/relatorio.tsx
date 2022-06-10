@@ -1,8 +1,10 @@
 import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 import { NextPage } from "next";
 import Titulo from "../../ui/components/Titulo/Titulo";
+import { useRelatorio } from "../../data/hooks/pages/pets/useRelatorio";
 
 const Relatorio: NextPage = () => {
+  const { listaRelatorio } = useRelatorio();
   return (
     <>
       <Titulo
@@ -10,6 +12,7 @@ const Relatorio: NextPage = () => {
         subtitulo={'Veja a lista de pets adotados'}
       />
       <TableContainer component={Paper}
+                      sx={{maxWidth: 830, mx: 'auto', p: {xs: 3,md: 5} }}
       >
           <Table>
               <TableHead>
@@ -20,11 +23,15 @@ const Relatorio: NextPage = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableRow>
-                  <TableCell>gfgf</TableCell>
-                  <TableCell>gfgf@fdfd.com</TableCell>
-                  <TableCell align={'right'}>50</TableCell>
-                </TableRow>
+                  {
+                    listaRelatorio.map((relatorio) => (
+                      <TableRow key={relatorio.id}>
+                          <TableCell>{relatorio.pet.nome}</TableCell>
+                          <TableCell>{relatorio.email}</TableCell>
+                          <TableCell align={'right'}>{relatorio.valor}</TableCell>
+                      </TableRow>
+                    ))}
+                
               </TableBody>
           </Table>
       </TableContainer>
