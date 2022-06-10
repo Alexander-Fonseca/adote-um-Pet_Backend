@@ -11,17 +11,17 @@ export function useCadastro(){
     function cadastrar(){
         if(validarFormulario()){
             ApiService.post('/pets',{
-              nome, 
-              historia,
-              foto
+                nome, 
+                historia,
+                foto
             })
-              .then(() => {
-                  limpar();
-                  setMensagem('Pet cadastrado com sucesso!');
-              })
-              .catch((error: AxiosError) => {
-                  setMensagem(error.response?.data.message);
-              })
+                .then(() => {
+                    limpar();
+                    setMensagem('Pet cadastrado com sucesso!');
+            })
+            .catch((error: AxiosError) => {
+                    setMensagem(error.response?.data.message);
+            })
         } else {
             setMensagem('Preencha todos os campos!')
         }

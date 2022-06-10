@@ -11,20 +11,20 @@ export function useIndex() {
       [valor, setValor] = useState(''),
       [mensagem, setMensagem] = useState('');
 
-   useEffect(() => {
+    useEffect(() => {
       ApiService.get('/pets')
       .then((resposta) =>{
           setListaPets(resposta.data);
       })
-   }, [])   
+    }, [])   
 
-   useEffect(() => {
+    useEffect(() => {
       if(petSelecionado === null){
         limparFormulario();
       }
-   }, [petSelecionado])
+    }, [petSelecionado])
 
-   function adotar(){
+    function adotar(){
       if(petSelecionado !== null){
           if(validarDadosAdocao()){
                 ApiService.post('/adocoes', {
@@ -33,9 +33,9 @@ export function useIndex() {
                     valor
                 })
                     .then(() => {
-                       setPetSelecionado(null);
-                       setMensagem('Pet adotado com sucesso!');
-                       limparFormulario();
+                        setPetSelecionado(null);
+                        setMensagem('Pet adotado com sucesso!');
+                        limparFormulario();
                     })
                     .catch((error: AxiosError) => {
                         setMensagem(error.response?.data.message)
@@ -46,14 +46,14 @@ export function useIndex() {
       }
     }
 
-   function validarDadosAdocao(){
+    function validarDadosAdocao(){
       return email.length > 0 && valor.length > 0;
-   }
+    }
 
-   function limparFormulario(){
-     setEmail('');
-     setValor('');
-   }
+    function limparFormulario(){
+      setEmail('');
+      setValor('');
+    }
 
   return {
     listaPets,
